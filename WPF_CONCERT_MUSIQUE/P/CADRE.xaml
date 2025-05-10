@@ -1,0 +1,66 @@
+﻿<Window x:Class="WPF_CONCERT_MUSIQUE.CADRE"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_CONCERT_MUSIQUE"
+        xmlns:c="clr-namespace:WPF_CONCERT_MUSIQUE.C" 
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF" d:DataContext="{d:DesignInstance Type=c:COORDINATION}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Concert de musique " Height="508" Width="800">
+    <Grid>
+        <!--Listbox-->
+        <ListBox x:Name="Lbox_Concert" d:ItemsSource="{d:SampleData ItemCount=5}" SelectedItem="{Binding Concerts_Selectionnee}" ItemsSource="{Binding Liste_Concerts}"  Margin="100,42,470,156" SelectionChanged="Lbox_Concert_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label FontWeight="Bold" Content="{Binding groupe}"/>
+                        <Label FontStyle="Italic" Content="{Binding style_de_musique}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!--Titre:-->
+        <Label Content="Liste des concerts" HorizontalAlignment="Left" Margin="330,0,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="25"/>
+
+        <!--Cadre-fond-gris-->
+        <Rectangle HorizontalAlignment="Left" Height="212" Margin="426,69,0,0" Stroke="Black" VerticalAlignment="Top" Width="310" Fill="#FF868686"/>
+
+        <!--Artiste:-->
+        <TextBlock x:Name="Label_Artiste" HorizontalAlignment="Left" Margin="429,79,0,0" VerticalAlignment="Top" Height="36" Width="297" FontSize="18">
+        <Run Text="Artiste: "/>
+        <Run Text="{Binding Concerts_Selectionnee.groupe}"/>
+        </TextBlock>
+
+
+        <!--Lieu:-->
+        <TextBlock x:Name="Label_Lieu" HorizontalAlignment="Left" Margin="429,121,0,0" VerticalAlignment="Top" Height="36" Width="364" FontSize="18">
+            <Run Text="Lieu:"/>
+            <Run Text="{Binding Concerts_Selectionnee.lieu}"/>
+        </TextBlock>
+
+        <!--Date:-->
+        <TextBlock x:Name="Label_Date" HorizontalAlignment="Left" Margin="429,161,0,0" VerticalAlignment="Top" Height="36" Width="297" FontSize="18">
+            <Run Text="Date:"/>
+            <Run Text="{Binding Concerts_Selectionnee.date}"/>
+        </TextBlock>
+
+        <!--Prix:-->
+        <TextBlock x:Name="Label_Prix" HorizontalAlignment="Left" Margin="429,196,0,0" VerticalAlignment="Top" Height="36" Width="297" FontSize="18">
+            <Run Text="Prix:"/>
+            <Run Text="{Binding Concerts_Selectionnee.prix}"/>
+            <Run Text="€"/>
+        </TextBlock>
+
+        <!--Style:-->
+        <TextBlock x:Name="Label_Style_Musique" HorizontalAlignment="Left" Margin="429,231,0,0" VerticalAlignment="Top" Height="36" Width="297" FontSize="20">
+            <Run Text="Style:"/>
+            <Run Text="{Binding Concerts_Selectionnee.style_de_musique}"/>
+        </TextBlock>
+
+        <!--Carte-->
+        <m:Map x:Name="mapControl" ZoomLevel="5" Margin="148,358,189,13"/>
+    </Grid>
+</Window>
